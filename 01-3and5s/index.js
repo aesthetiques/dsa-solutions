@@ -10,4 +10,4 @@ let findMultiples = limit => {
   return sum
 }
 
-findMultiples(1000)
+findMultiples(999)

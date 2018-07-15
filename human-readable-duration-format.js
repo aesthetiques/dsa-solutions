@@ -1,5 +1,5 @@
 function formatDuration (seconds) {
-  if(seconds === 0) return 'now'
+  if(!seconds) return 'now'
   
   const counts = [
     { singular: 'year', plural: 'years', measure: Math.floor(seconds / (60 * 60 * 24 * 365))},
@@ -14,8 +14,12 @@ function formatDuration (seconds) {
     if(count.measure === 1) return `${count.measure} ${count.singular}`
   }).filter(count => count !== undefined)
   
-  if()
-  
-  return
+  if(phrase.length > 1){
+    const finalMeasure = phrase.pop()
+    return phrase.join(', ') + ` and ${finalMeasure}`
+  }else{ 
+    return phrase.join() 
+  }
 }
+
 

@@ -12,9 +12,9 @@ const pluralizeOrNah = (time) => {
       return time.count > 1 ? 'days' : time.count === 1 ? 'day' : null
     case 'hours':
       return time.count > 1 ? 'hours' : time.count === 1 ? 'hour' : null
-    case minutes:
+    case 'minutes':
       return time.count > 1 ? 'minutes' : time.count === 1 ? 'minute' : null
-    case seconds:
+    case 'seconds':
       return time.count > 1 ? 'seconds' : time.count === 1 ? 'second' : null
   }
 }
@@ -22,6 +22,7 @@ const pluralizeOrNah = (time) => {
 const composePhrase = (metric) => {
   if(!metric) return ''
   switch(metric.metric){
+    case 'second':
     case 'seconds': 
       return ` and ${metric.count} ${metric.metric}`
     case 'minutes': 
@@ -40,15 +41,15 @@ function formatDuration (seconds) {
   let phrase = ''
   
   const metrics = [ 
-    { count: calculateYears(seconds), metric: pluralizeOrNah(this) },
-    { count: calculateDays(seconds), metric: pluralizeOrNah(this) },
-    { count: calculateHours(seconds), metric: pluralizeOrNah(this) },
-    { count: calculateMinutes(seconds), metric: pluralizeOrNah(this) },
-    { count: calculateSeconds(seconds), metric: pluralizeOrNah(this) }
+    { count: calculateYears(seconds), metric: pluralizeOrNah('years') },
+    { count: calculateDays(seconds), metric: pluralizeOrNah('days') },
+    { count: calculateHours(seconds), metric: pluralizeOrNah('hours') },
+    { count: calculateMinutes(seconds), metric: pluralizeOrNah('minutes') },
+    { count: calculateSeconds(seconds), metric: pluralizeOrNah('seconds') }
    ]
   
   for(let metric of metrics){
-    if(metric) phrase += composePhrase(metric)
+    if(metric.count) phrase += composePhrase(metric)
   }
   
   return phrase

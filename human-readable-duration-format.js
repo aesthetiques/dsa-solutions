@@ -48,6 +48,7 @@ function formatDuration (seconds) {
   
   for(let metric of metrics){
     if(metric.metric) phrase += composePhrase(metric)
+    
   }
   
   return phrase

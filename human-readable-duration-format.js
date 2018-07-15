@@ -21,17 +21,15 @@ const pluralizeOrNah = (time) => {
 
 const composePhrase = (metric) => {
   if(!metric) return ''
-  switch(metric.metric){
-    case 'second':
-    case 'seconds': 
+    if(metric.metric === 'seconds' || metric.metric === 'second')
       return ` and ${metric.count} ${metric.metric}`
-    case 'minutes': 
+    if(metric.metric === 'minutes' || metric.metric === 'minute')
       return ` ${metric.count} ${metric.metric}`
-    case 'hours': 
-      return ` ${metric.count} ${metric.metric},`
-    case 'days': 
+    if(metric.metric === 'hours' || metric.metric === 'hour')
       return ` ${metric.count} ${metric.metric}`
-    case 'years': 
+    if(metric.metric === 'days' || metric.metric === 'day')
+      return ` ${metric.count} ${metric.metric}`
+    if(metric.metric === 'years' || metric.metric === 'year')
       return ` ${metric.count} ${metric.metric}`
   }
 }
@@ -49,7 +47,7 @@ function formatDuration (seconds) {
    ]
   
   for(let metric of metrics){
-    if(metric.count) phrase += composePhrase(metric)
+    if(metric.metric) phrase += composePhrase(metric)
   }
   
   return phrase

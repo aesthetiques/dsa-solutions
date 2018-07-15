@@ -12,14 +12,12 @@ function formatDuration (seconds) {
   const phrase = counts.map(count => {
     if(count.measure > 1) return `${count.measure} ${count.plural}`
     if(count.measure === 1) return `${count.measure} ${count.singular}`
-  }).filter(count => count !== undefined)
+  }).filter(count => count)
   
   if(phrase.length > 1){
     const finalMeasure = phrase.pop()
     return phrase.join(', ') + ` and ${finalMeasure}`
   }else{ 
-    return phrase.join() 
+    return phrase[0]
   }
 }
-
-

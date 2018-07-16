@@ -12,9 +12,9 @@ function hourglassSum(arr) {
           let bot = topOrBottomRow(arr[i + 2], offset)
           offset++
           highestSum = highestSum ? highestSum < (top + mid + bot) 
-                                  ? top + mid + bot      
-                                  : highestSum 
-                                  : top + mid + bot
+                                    ? top + mid + bot      
+                                    : highestSum 
+                                    : top + mid + bot
       }
   }
   
